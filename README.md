@@ -1,5 +1,7 @@
 # ⛽ FuelSync — Smart Fuel & LPG Booking Platform
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-fuelsync--2b8ce.web.app-fuel?style=for-the-badge&logo=firebase)](https://fuelsync-2b8ce.web.app)
+
 > A production-grade React web application that helps users discover, compare, and book fuel or LPG slots during crisis situations — with real-time Firestore updates.
 
 ---
