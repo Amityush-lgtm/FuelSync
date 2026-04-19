@@ -6,6 +6,14 @@
 
 ---
 
+## 🧠 Problem Statement
+
+**Who is the user?** Daily commuters and households who rely on fuel and LPG gas cylinders.
+**What problem are we solving?** During a fuel crisis, natural disaster, or supply chain shortage, panic buying empties petrol pumps and gas agencies unpredictably. Users waste hours travelling between stations to find fuel or LPG availability.
+**Why does it matter?** FuelSync provides real-time visibility into local provider stocks. It allows users to book a guaranteed time slot, minimizing chaos at the pumps, preventing stock hoarding, and ensuring essential supply chain transparency.
+
+---
+
 ## 📸 Feature Overview
 
 | Feature | Details |
