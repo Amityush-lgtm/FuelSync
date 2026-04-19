@@ -1,0 +1,51 @@
+// ──────────────────────────────────────────────────────────
+// firestore.rules
+// Paste these into Firebase Console → Firestore → Rules
+// ──────────────────────────────────────────────────────────
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: is the requester authenticated?
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    // Helper: is the requester the owner of this document?
+    function isOwner(uid) {
+      return isAuth() && request.auth.uid == uid;
+    }
+
+    // ── Users ──────────────────────────────────────────────
+    match /users/{userId} {
+      allow read:   if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId);
+      allow delete: if false;
+    }
+
+    // ── Providers (public read, authenticated write for seeding) ──
+    match /providers/{providerId} {
+      allow read:  if true;
+      allow write: if isAuth();
+    }
+
+    // ── Slots (public read, authenticated write) ──────────
+    match /slots/{slotId} {
+      allow read:  if true;
+      allow write: if isAuth();
+    }
+
+    // ── Bookings ────────────────────────────────────────────
+    match /bookings/{bookingId} {
+      // Users can read their own bookings
+      allow read:   if isAuth() && resource.data.userId == request.auth.uid;
+      // Users can create bookings for themselves
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      // Users can update (cancel) their own bookings
+      allow update: if isAuth() && resource.data.userId == request.auth.uid;
+      allow delete: if false;
+    }
+  }
+}
